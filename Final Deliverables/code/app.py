@@ -37,31 +37,28 @@ def predict():
         file_path = os.path.join(
             basepath, 'uploads', secure_filename(f.filename))
         f.save(file_path)
-        #img = image.load_img(file_path, target_size=(128, 128))
+        img = image.load_img(file_path, target_size=(128, 128))
         
-        #x = image.img_to_array(img)
-        #x = np.expand_dims(x, axis=0)
+        x = image.img_to_array(img)
+        x = np.expand_dims(x, axis=0)
         
         plant=request.form['plant']
         print(plant)
         if(plant=="vegetable"):
-            #preds = model.predict(x)
-            #preds=np.argmax(preds)
-            #print(preds)
-            df=pd.read_excel('precautions - veg.xlsx', usecols=[0,0])
-            var = "Oopps!! Your pepper plant is infected by Bacterial Leaft Spot. The disease cycle can be stopped by using the Sango formula for disinfectants. Bleach treatment and hot water treatment is also helpful."
-            #print(df.iloc[preds]['caution'])
+            preds = model.predict(x)
+            preds=np.argmax(preds)
+            print(preds)
+            df=pd.read_excel('precautions - veg.xlsx')
+            print(df.iloc[preds]['caution'])
         else:
-            #preds = model1.predict(x)
-            #preds=np.argmax(preds)                
+            preds = model1.predict(x)
+            preds=np.argmax(preds)                
             df=pd.read_excel('precautions - fruits.xlsx')
-            var = "Oopps!! Your apple plant is infected by Black Rots. This infection is a fungal infection. To control balck rot, remove the cankers by pruning at least 15 inches below the end and burn or bury them. Treating the sites with the antibiotic streptomycin or a copper-based fungicide will be helpful."
-            #print(df.iloc[preds]['caution'])
+            print(df.iloc[preds]['caution'])
 
         
-        print(df)
-        
-        return var
+       
+        return df.iloc[preds]['caution']
         
 if __name__ == "__main__":
     app.run(debug=False)
