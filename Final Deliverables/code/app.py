@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 #load both the vegetable and fruit models
 model = load_model("vegetable.h5")
-#model1=load_model("fruit.h5")
+model1=load_model("fruit.h5")
 
 #home page
 @app.route('/')
