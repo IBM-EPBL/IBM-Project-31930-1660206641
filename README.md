@@ -34,17 +34,17 @@ Project Flow:
 
 Database Used:
 
-   Fruits
-   Vegetables
+    Fruits
+    Vegetables
  Both the database is trained and tested using CNN algorithm.
  
  Languages Used:
- 
- Python
- HTML
- CSS
- Java Script
- Flask
+      
+      Python
+      HTML
+      CSS
+      Java Script
+      Flask
  
  
  
